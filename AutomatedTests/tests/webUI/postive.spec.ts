@@ -1,5 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
-import { WeatherHome } from "../pom/home.pom";
+import { WeatherHome } from "../../pom/home.pom";
 
 test.describe("Positive tests", () => {
   let home: WeatherHome;
@@ -17,12 +17,21 @@ test.describe("Positive tests", () => {
 
   test("Verify Temperature Unit Toggle (°C/°F)", async ({ page }) => {
     await home.toggleTemperatureUnit("F");
-
-    const hourlyData = await home.getAllHourlyWeatherData();
-
     await expect(home.currentTempData).toHaveText(/°F/);
-    for (const item of hourlyData) {
+
+    const hourlyDataFarenheit = await home.getAllHourlyWeatherData();
+
+    for (const item of hourlyDataFarenheit) {
       expect(item.temperature).toMatch(/°F/);
+    }
+
+    await home.toggleTemperatureUnit("C");
+    await expect(home.currentTempData).toHaveText(/°F/);
+
+    let hourlyDataCelcius = await home.getAllHourlyWeatherData();
+    
+    for (const item of hourlyDataCelcius) {
+      expect(item.temperature).toMatch(/°C/);
     }
   });
 
