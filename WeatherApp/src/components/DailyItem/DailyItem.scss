@@ -1,0 +1,38 @@
+@import "../../styles/color-themes";
+@import "../../styles/font-size";
+
+.daily-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  font-family: "Barlow", sans-serif;
+  font-size: $body2-font-size;
+  cursor: pointer;
+  .icon-small {
+    width: 40px;
+  }
+  .day {
+    @include theme() {
+      color: get-color("text");
+    }
+    flex: 1;
+    margin-left: 15px;
+    font-weight: 600;
+    cursor: inherit;
+  }
+  .description {
+    @include theme() {
+      color: get-color("text");
+    }
+    flex: 1;
+    margin-right: 15px;
+    text-align: right;
+    cursor: inherit;
+  }
+  .min-max {
+    @include theme() {
+      color: get-color("text-secondary");
+    }
+    cursor: inherit;
+  }
+}
