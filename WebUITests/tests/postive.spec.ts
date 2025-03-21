@@ -16,8 +16,14 @@ test.describe("Positive tests", () => {
   });
 
   test("Verify Temperature Unit Toggle (°C/°F)", async ({ page }) => {
-    await home.toggleTheme();
-    expect(await home.isThemeLight()).toBe(false);
+    await home.toggleTemperatureUnit("F");
+
+    const hourlyData = await home.getAllHourlyWeatherData();
+
+    await expect(home.currentTempData).toHaveText(/°F/);
+    for (const item of hourlyData) {
+      expect(item.temperature).toMatch(/°F/);
+    }
   });
 
   test("Verify Theme Toggle (Light/Dark Mode)", async ({ page }) => {
@@ -28,7 +34,16 @@ test.describe("Positive tests", () => {
     expect(await home.isThemeLight()).toBe(true);
   });
 
-  test("Verify Hourly Weather Data Display", async ({ page }) => {});
+  test("Verify Hourly Weather Data Display", async ({ page }) => {
+    const items = await home.getAllHourlyWeatherData();
+    const timeRegex = /^(0?\d|1\d|2[0-3]):00$/;
 
-  test("Verify Daily Weather Forecast Display", async ({ page }) => {});
+    await expect(home.hourlyWeatherText).toHaveText("Hourly");
+
+    expect(items).toHaveLength(24); // 24 hours
+
+    for (const item of items) {
+      expect(item.timeHour).toMatch(timeRegex);
+    }
+  });
 });

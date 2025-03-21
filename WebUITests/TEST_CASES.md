@@ -1,4 +1,4 @@
-### **Positive Test Cases**
+### **All Test Cases**
 
 #### **1. Verify Default Location Weather Display**  
 **Description:** Ensure that the weather app displays the weather for the default location when opened.  
@@ -22,9 +22,3 @@
 **Positive**  
 - **Steps:** Open the weather app - No input required - The app should display hourly weather data with temperature and icons.  
 - **Steps:** Compare the displayed hourly forecast with the default values - 9:00 (21°C, sunny), 10:00 (21°C, sunny), etc. - Data should match expected default values.
-
-#### **5. Verify Daily Weather Forecast Display**  
-**Description:** Ensure that daily weather data is shown correctly.  
-**Positive**  
-- **Steps:** Open the weather app - No input required - The app should display daily forecast information for at least 7 days.  
-- **Steps:** Compare displayed daily weather with default values - "Friday: moderate rain, 15°C / 28°C", etc. - Data should match expected default values.
