@@ -5,7 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.51.1",
-    "@types/node": "^22.13.10"
+    "@types/node": "^22.13.11"
   },
   "scripts": {
     "ui:tests": "playwright test --project chromium",

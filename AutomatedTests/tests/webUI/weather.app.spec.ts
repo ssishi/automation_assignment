@@ -1,7 +1,7 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { WeatherHome } from "../../pom/home.pom";
 
-test.describe("Positive tests", () => {
+test.describe("Weather App Tests", () => {
   let home: WeatherHome;
 
   test.beforeEach(async ({ page }) => {
@@ -29,7 +29,7 @@ test.describe("Positive tests", () => {
     await expect(home.currentTempData).toHaveText(/°F/);
 
     let hourlyDataCelcius = await home.getAllHourlyWeatherData();
-    
+
     for (const item of hourlyDataCelcius) {
       expect(item.temperature).toMatch(/°C/);
     }
