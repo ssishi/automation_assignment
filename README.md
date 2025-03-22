@@ -99,11 +99,16 @@ Also, there's test cases as well. A file called `TEST_CASES.md` should contain a
 
 ### Running the Tests
 
-1. Execute the tests:
+1. Navigate to the project automation scripts directory
    ```bash
-   yarn playwright test
+   cd AutomatedTests/
    ```
-2. View the test report:
+
+2. Execute the tests:
    ```bash
-   npx playwright show-report
+   yarn run ui:tests
+   ```
+3. View the test report:
+   ```bash
+   yarn run report
    ```
